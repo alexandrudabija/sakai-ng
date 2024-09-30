@@ -14,27 +14,25 @@ import { AppMenuitemComponent } from './app.menuitem.component';
 import { RouterModule } from '@angular/router';
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
-import { AppConfigModule } from './config/config.module';
+
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 
-@NgModule({ declarations: [
-        AppMenuitemComponent,
-        AppTopBarComponent,
-        AppFooterComponent,
-        AppMenuComponent,
-        AppSidebarComponent,
-        AppLayoutComponent,
-    ],
+@NgModule({
     exports: [AppLayoutComponent], imports: [BrowserModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        InputTextModule,
-        SidebarModule,
-        BadgeModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        RippleModule,
-        RouterModule,
-        AppConfigModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+    FormsModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    RippleModule,
+    RouterModule,
+    AppMenuitemComponent,
+    AppTopBarComponent,
+    AppFooterComponent,
+    AppMenuComponent,
+    AppSidebarComponent,
+    AppLayoutComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppLayoutModule { }

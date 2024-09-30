@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    templateUrl: './formlayoutdemo.component.html'
+    templateUrl: './formlayoutdemo.component.html',
+    standalone: true,
+    imports: [InputTextModule, ButtonModule, InputTextareaModule, DropdownModule, FormsModule]
 })
 export class FormLayoutDemoComponent {
 

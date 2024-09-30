@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
+import { BlockViewerComponent } from '../blockviewer/blockviewer.component';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ChipModule } from 'primeng/chip';
 
 @Component({
-    templateUrl: './blocks.component.html'
+    templateUrl: './blocks.component.html',
+    standalone: true,
+    imports: [BlockViewerComponent, ButtonModule, RippleModule, InputTextModule, CheckboxModule, ChipModule]
 })
 export class BlocksComponent{
 

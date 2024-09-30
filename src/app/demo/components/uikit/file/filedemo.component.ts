@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService, SharedModule } from 'primeng/api';
+import { FileUploadModule } from 'primeng/fileupload';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
     templateUrl: './filedemo.component.html',
-    providers: [MessageService]
+    providers: [MessageService],
+    standalone: true,
+    imports: [FileUploadModule, SharedModule, NgIf, NgFor]
 })
 export class FileDemoComponent {
 

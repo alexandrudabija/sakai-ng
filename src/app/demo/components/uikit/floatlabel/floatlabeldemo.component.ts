@@ -1,8 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from 'src/app/demo/service/country.service';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CalendarModule } from 'primeng/calendar';
+import { ChipsModule } from 'primeng/chips';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
     templateUrl: './floatlabeldemo.component.html',
+    standalone: true,
+    imports: [
+        FormsModule,
+        InputTextModule,
+        AutoCompleteModule,
+        CalendarModule,
+        ChipsModule,
+        InputMaskModule,
+        InputNumberModule,
+        InputGroupModule,
+        InputGroupAddonModule,
+        DropdownModule,
+        MultiSelectModule,
+        InputTextareaModule,
+    ],
 })
 export class FloatLabelDemoComponent implements OnInit {
 
