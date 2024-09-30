@@ -1,0 +1,35 @@
+@import './typography';
+@import './theme';
+@import './colors';
+@import 'material-icons/iconfont/material-icons.css';
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/screens";
+
+
+@import 'swiper/css/bundle';
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+}
+
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
