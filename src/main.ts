@@ -1,4 +1,4 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode, importProvidersFrom, isDevMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app/app-routing.module';
 import { AppLayoutModule } from './app/layout/app.layout.module';
 import { AppComponent } from './app/app.component';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideServiceWorker } from '@angular/service-worker';
 
 if (environment.production) {
   enableProdMode();
@@ -25,7 +26,10 @@ bootstrapApplication(AppComponent, {
         importProvidersFrom(AppRoutingModule, AppLayoutModule),
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService,
+        PhotoService, ProductService, provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }),
     ]
 })
   .catch(err => console.error(err));
