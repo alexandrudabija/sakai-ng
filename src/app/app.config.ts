@@ -5,7 +5,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { provideServiceWorker } from '@angular/service-worker';
-import { AppLayoutModule } from './layout/app.layout.module';
 import { AuthInterceptor } from './@core/auth/auth.interceptor';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { CustomerService } from './demo/service/customer.service';
@@ -33,7 +32,7 @@ export const appConfig: ApplicationConfig = {
  provideZoneChangeDetection({ eventCoalescing: true }),
  provideAnimationsAsync(), provideHttpClient(withFetch(), withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    importProvidersFrom(BrowserAnimationsModule, AppLayoutModule, JwtModule.forRoot({
+    importProvidersFrom(BrowserAnimationsModule, JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         // allowedDomains: ["example.com"],

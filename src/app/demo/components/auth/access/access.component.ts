@@ -8,4 +8,15 @@ import { RouterLink } from '@angular/router';
     standalone: true,
     imports: [ButtonModule, RouterLink],
 })
-export class AccessComponent { }
+export class AccessComponent { 
+
+
+
+
+
+
+
+
+
+    
+}

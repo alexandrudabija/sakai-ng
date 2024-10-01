@@ -1,5 +1,5 @@
 import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
@@ -7,12 +7,39 @@ import { AppTopBarComponent } from './app.topbar.component';
 import { NgClass } from '@angular/common';
 import { AppFooterComponent } from './app.footer.component';
 import { AppConfigComponent } from './config/app.config.component';
+import { FormsModule } from '@angular/forms';
+import { BadgeModule } from 'primeng/badge';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextModule } from 'primeng/inputtext'; 
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { RippleModule } from 'primeng/ripple';
+import { SidebarModule } from 'primeng/sidebar';
+import { AppMenuComponent } from './app.menu.component';
+import { AppMenuitemComponent } from './app.menuitem.component';
 
 @Component({
     selector: 'app-layout',
     templateUrl: './app.layout.component.html',
     standalone: true,
-    imports: [NgClass, AppTopBarComponent, AppSidebarComponent, RouterOutlet, AppFooterComponent, AppConfigComponent]
+    imports: [NgClass, AppTopBarComponent,
+        AppSidebarComponent,
+        RouterOutlet,
+        AppFooterComponent,
+        AppConfigComponent,
+        FormsModule,
+        InputTextModule,
+        SidebarModule,
+        BadgeModule,
+        RadioButtonModule,
+        InputSwitchModule,
+        RippleModule,
+        RouterModule,
+        AppMenuitemComponent,
+        AppTopBarComponent,
+        AppFooterComponent,
+        AppMenuComponent,
+        AppSidebarComponent,
+    ]
 })
 export class AppLayoutComponent implements OnDestroy {
 
@@ -30,9 +57,9 @@ export class AppLayoutComponent implements OnDestroy {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target) 
+                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target)
                         || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
-                    
+
                     if (isOutsideClicked) {
                         this.hideMenu();
                     }
