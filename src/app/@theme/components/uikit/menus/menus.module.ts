@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MenusComponent } from './menus.component';
+
 import { PaymentComponent } from './payment.component';
 import { SeatComponent } from './seat.component';
 import { PersonalComponent } from './personal.component';
@@ -33,7 +33,7 @@ import { InputTextModule } from 'primeng/inputtext';
         InputTextModule,
         RouterModule.forChild([
             {
-                path: '', component: MenusComponent, children: [
+                path: '', loadComponent: () => import('./menus.component').then(m => m.MenusComponent), children: [
                     { path: '', redirectTo: 'personal', pathMatch: 'full' },
                     { path: 'personal', component: PersonalComponent },
                     { path: 'confirmation', component: ConfirmationComponent },
@@ -42,7 +42,7 @@ import { InputTextModule } from 'primeng/inputtext';
                 ]
             }
         ]),
-        MenusComponent
+        
     ],
     exports: [RouterModule]
 })

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TreeNode, SharedModule } from 'primeng/api';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
-import { NgFor, NgIf } from '@angular/common';
+
 import { NodeService } from 'src/app/@core/services/node.service';
 
 @Component({
     templateUrl: './treedemo.component.html',
     standalone: true,
-    imports: [TreeModule, TreeTableModule, SharedModule, NgFor, NgIf]
+    imports: [TreeModule, TreeTableModule, SharedModule]
 })
 export class TreeDemoComponent implements OnInit {
+    private nodeService = inject(NodeService);
+
 
     files1: TreeNode[] = [];
 
@@ -25,8 +27,6 @@ export class TreeDemoComponent implements OnInit {
     selectedFiles3: TreeNode = {};
 
     cols: any[] = [];
-
-    constructor(private nodeService: NodeService) {}
 
     ngOnInit() {
         this.nodeService.getFiles().then(files => this.files1 = files);

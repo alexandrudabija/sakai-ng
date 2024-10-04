@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 
 import { Table, TableModule } from 'primeng/table';
 import { MessageService, ConfirmationService, SharedModule } from 'primeng/api';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { ProgressBarModule } from 'primeng/progressbar';
-import { NgClass, NgIf, CurrencyPipe, DatePipe } from '@angular/common';
+import { NgClass, CurrencyPipe, DatePipe } from '@angular/common';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
@@ -27,9 +27,12 @@ interface expandedRows {
     templateUrl: './tabledemo.component.html',
     providers: [MessageService, ConfirmationService],
     standalone: true,
-    imports: [TableModule, SharedModule, ButtonModule, InputTextModule, MultiSelectModule, FormsModule, DropdownModule, SliderModule, ProgressBarModule, NgClass, ToggleButtonModule, ToastModule, RippleModule, RatingModule, NgIf, CurrencyPipe, DatePipe]
+    imports: [TableModule, SharedModule, ButtonModule, InputTextModule, MultiSelectModule, FormsModule, DropdownModule, SliderModule, ProgressBarModule, NgClass, ToggleButtonModule, ToastModule, RippleModule, RatingModule, CurrencyPipe, DatePipe]
 })
 export class TableDemoComponent implements OnInit {
+    private customerService = inject(CustomerService);
+    private productService = inject(ProductService);
+
 
     customers1: Customer[] = [];
 
@@ -60,8 +63,6 @@ export class TableDemoComponent implements OnInit {
     loading: boolean = true;
 
     @ViewChild('filter') filter!: ElementRef;
-
-    constructor(private customerService: CustomerService, private productService: ProductService) { }
 
     ngOnInit() {
         this.customerService.getCustomersLarge().then(customers => {

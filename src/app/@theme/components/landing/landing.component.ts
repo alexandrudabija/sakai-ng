@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/@core/services/app.layout.service';
 import { StyleClassModule } from 'primeng/styleclass';
@@ -12,7 +12,7 @@ import { DividerModule } from 'primeng/divider';
     imports: [StyleClassModule, ButtonModule, DividerModule]
 })
 export class LandingComponent {
-
-    constructor(public layoutService: LayoutService, public router: Router) { }
+    layoutService = inject(LayoutService);
+    router = inject(Router);
 
 }

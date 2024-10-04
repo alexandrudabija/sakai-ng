@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Customer } from '../types/customer';
 
 @Injectable()
 export class CustomerService {
+    private http = inject(HttpClient);
 
-    constructor(private http: HttpClient) { }
 
     getCustomersSmall() {
         return this.http.get<any>('demo/data/customers-small.json')

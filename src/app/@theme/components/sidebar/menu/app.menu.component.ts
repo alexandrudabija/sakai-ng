@@ -1,20 +1,20 @@
-import { OnInit } from '@angular/core';
+import { OnInit, inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from '../../../../@core/services/app.layout.service';
-import { NgFor, NgIf } from '@angular/common';
+
 import { AppMenuitemComponent } from './app.menuitem.component';
 
 @Component({
     selector: 'app-menu',
     templateUrl: './app.menu.component.html',
     standalone: true,
-    imports: [NgFor, NgIf, AppMenuitemComponent]
+    imports: [AppMenuitemComponent]
 })
 export class AppMenuComponent implements OnInit {
+    layoutService = inject(LayoutService);
+
 
     model: any[] = [];
-
-    constructor(public layoutService: LayoutService) { }
 
     ngOnInit() {
         this.model = [

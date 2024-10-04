@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { MessageService, SharedModule } from 'primeng/api';
 import { Table, TableModule } from 'primeng/table';
@@ -12,7 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
-import { NgIf, NgClass, CurrencyPipe } from '@angular/common';
+import { NgClass, CurrencyPipe } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -24,9 +24,12 @@ import { Product } from 'src/app/@core/types/product';
     templateUrl: './crud.component.html',
     providers: [MessageService],
     standalone: true,
-    imports: [ToastModule, ToolbarModule, SharedModule, ButtonModule, RippleModule, FileUploadModule, TableModule, InputTextModule, RatingModule, FormsModule, DialogModule, NgIf, NgClass, InputTextareaModule, DropdownModule, RadioButtonModule, InputNumberModule, CurrencyPipe]
+    imports: [ToastModule, ToolbarModule, SharedModule, ButtonModule, RippleModule, FileUploadModule, TableModule, InputTextModule, RatingModule, FormsModule, DialogModule, NgClass, InputTextareaModule, DropdownModule, RadioButtonModule, InputNumberModule, CurrencyPipe]
 })
 export class CrudComponent implements OnInit {
+    private productService = inject(ProductService);
+    private messageService = inject(MessageService);
+
 
     productDialog: boolean = false;
 
@@ -47,8 +50,6 @@ export class CrudComponent implements OnInit {
     statuses: any[] = [];
 
     rowsPerPageOptions = [5, 10, 20];
-
-    constructor(private productService: ProductService, private messageService: MessageService) { }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);

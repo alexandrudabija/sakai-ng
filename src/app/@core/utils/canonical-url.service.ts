@@ -1,17 +1,19 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2, inject } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanonicalUrlService {
+  private readonly rendererFactory = inject(RendererFactory2);
+  private readonly document = inject<Document>(DOCUMENT);
+
 
   private readonly renderer: Renderer2;
 
-  constructor(
-    private readonly rendererFactory: RendererFactory2,
-    @Inject(DOCUMENT) private readonly document: Document
-  ) {
+  constructor() {
+    const rendererFactory = this.rendererFactory;
+
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 

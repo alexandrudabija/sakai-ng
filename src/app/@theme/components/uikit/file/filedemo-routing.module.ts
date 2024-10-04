@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FileDemoComponent } from './filedemo.component';
+
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: FileDemoComponent }
+		{ path: '', loadComponent: () => import('./filedemo.component').then(m => m.FileDemoComponent) }
 	])],
 	exports: [RouterModule]
 })

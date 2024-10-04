@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -8,8 +8,9 @@ import { WebStorageService } from './web-storage.service';
 
 })
 export class CacheService {
-    constructor(private http: HttpClient,
-        private webStorageService: WebStorageService) { }
+    private http = inject(HttpClient);
+    private webStorageService = inject(WebStorageService);
+
 
 
     //  Generic method to set data in localStorage with a time-to-live (TTL).

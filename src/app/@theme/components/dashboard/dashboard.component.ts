@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { MenuItem, SharedModule } from 'primeng/api';
 
 import { Subscription, debounceTime } from 'rxjs';
@@ -26,6 +26,9 @@ import { Product } from 'src/app/@core/types/product';
     ],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+    private productService = inject(ProductService);
+    layoutService = inject(LayoutService);
+
 
     items!: MenuItem[];
 
@@ -37,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     subscription!: Subscription;
 
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
+    constructor() {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
             .subscribe((config) => {

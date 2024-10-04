@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CrudComponent } from './crud.component';
+
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: CrudComponent }
+		{ path: '', loadComponent: () => import('./crud.component').then(m => m.CrudComponent) }
 	])],
 	exports: [RouterModule]
 })

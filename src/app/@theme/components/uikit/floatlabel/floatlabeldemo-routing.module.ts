@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FloatLabelDemoComponent } from './floatlabeldemo.component';
+
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: FloatLabelDemoComponent }
+		{ path: '', loadComponent: () => import('./floatlabeldemo.component').then(m => m.FloatLabelDemoComponent) }
 	])],
 	exports: [RouterModule]
 })

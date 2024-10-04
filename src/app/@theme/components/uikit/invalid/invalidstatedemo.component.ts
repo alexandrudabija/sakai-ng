@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +18,8 @@ import { CountryService } from 'src/app/@core/services/country.service';
     imports: [InputTextModule, AutoCompleteModule, FormsModule, CalendarModule, ChipsModule, PasswordModule, InputMaskModule, InputNumberModule, DropdownModule, MultiSelectModule, InputTextareaModule]
 })
 export class InvalidStateDemoComponent implements OnInit {
+    private countryService = inject(CountryService);
+
 
     countries: any[] = [];
 
@@ -45,7 +47,7 @@ export class InvalidStateDemoComponent implements OnInit {
 
     value10: any;
 
-    constructor(private countryService: CountryService) {
+    constructor() {
         this.cities = [
             { name: 'New York', code: 'NY' },
             { name: 'Rome', code: 'RM' },

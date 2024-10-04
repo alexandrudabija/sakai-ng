@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { InvalidStateDemoComponent } from './invalidstatedemo.component';
+
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: InvalidStateDemoComponent }
+		{ path: '', loadComponent: () => import('./invalidstatedemo.component').then(m => m.InvalidStateDemoComponent) }
 	])],
 	exports: [RouterModule]
 })

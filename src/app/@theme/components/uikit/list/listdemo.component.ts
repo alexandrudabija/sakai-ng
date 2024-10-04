@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SelectItem, SharedModule } from 'primeng/api';
 import { DataView, DataViewModule } from 'primeng/dataview';
 
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
-import { NgFor } from '@angular/common';
+
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -16,9 +16,11 @@ import { ProductService } from 'src/app/@core/services/product.service';
 @Component({
     templateUrl: './listdemo.component.html',
     standalone: true,
-    imports: [DataViewModule, SharedModule, DropdownModule, InputTextModule, NgFor, RatingModule, FormsModule, ButtonModule, PickListModule, OrderListModule]
+    imports: [DataViewModule, SharedModule, DropdownModule, InputTextModule, RatingModule, FormsModule, ButtonModule, PickListModule, OrderListModule]
 })
 export class ListDemoComponent implements OnInit {
+    private productService = inject(ProductService);
+
 
     products: Product[] = [];
 
@@ -33,8 +35,6 @@ export class ListDemoComponent implements OnInit {
     targetCities: any[] = [];
 
     orderCities: any[] = [];
-
-    constructor(private productService: ProductService) { }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);

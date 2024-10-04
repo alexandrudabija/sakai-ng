@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -32,6 +32,8 @@ import { CountryService } from 'src/app/@core/services/country.service';
     ],
 })
 export class FloatLabelDemoComponent implements OnInit {
+    private countryService = inject(CountryService);
+
 
     countries: any[] = [];
 
@@ -63,7 +65,7 @@ export class FloatLabelDemoComponent implements OnInit {
 
     value12: any;
 
-    constructor(private countryService: CountryService) {
+    constructor() {
         this.cities = [
             {name: 'New York', code: 'NY'},
             {name: 'Rome', code: 'RM'},

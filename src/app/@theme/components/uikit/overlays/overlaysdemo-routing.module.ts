@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { OverlaysDemoComponent } from './overlaysdemo.component';
+
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: OverlaysDemoComponent }
+		{ path: '', loadComponent: () => import('./overlaysdemo.component').then(m => m.OverlaysDemoComponent) }
 	])],
 	exports: [RouterModule]
 })

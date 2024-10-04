@@ -1,11 +1,16 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, PLATFORM_ID, Renderer2, RendererFactory2, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeoService {
+  private title = inject(Title);
+  private rendererFactory = inject(RendererFactory2);
+  private meta = inject(Meta);
+  private platformId = inject<Object>(PLATFORM_ID);
+
   private renderer: Renderer2;
   productUrl: string = '';
   public readonly defaultImageWidth = '1200';
@@ -15,11 +20,7 @@ export class SeoService {
   public readonly defaultTwitterCard = 'summary_large_image';
   // public readonly defaultImageUrl = ''https://webmasters360.md/assets/logo/logo.png';
 
-  constructor(
-    private title: Title, private rendererFactory: RendererFactory2,
-    private meta: Meta,
-    @Inject(PLATFORM_ID) private platformId: Object,
-  ) {
+  constructor() {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 

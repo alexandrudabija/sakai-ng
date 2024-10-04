@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -6,8 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class RoleProvider   {
-  constructor(private authService: AuthService) {
-  }
+  private authService = inject(AuthService);
   // getRole(): Observable<string | string[]> {
       
   //     // return this.authService.onTokenChange().pipe(

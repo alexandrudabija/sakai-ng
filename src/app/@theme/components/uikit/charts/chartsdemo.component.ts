@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/@core/services/app.layout.service';
 import { ChartModule } from 'primeng/chart';
@@ -9,6 +9,8 @@ import { ChartModule } from 'primeng/chart';
     imports: [ChartModule]
 })
 export class ChartsDemoComponent implements OnInit, OnDestroy {
+    private layoutService = inject(LayoutService);
+
 
     lineData: any;
 
@@ -31,7 +33,7 @@ export class ChartsDemoComponent implements OnInit, OnDestroy {
     radarOptions: any;
 
     subscription: Subscription;
-    constructor(private layoutService: LayoutService) {
+    constructor() {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
             .subscribe((config) => {

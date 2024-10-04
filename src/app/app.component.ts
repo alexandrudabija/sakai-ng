@@ -1,4 +1,4 @@
-import {  AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { RouterOutlet } from '@angular/router';
 import { timer } from 'rxjs';
@@ -12,11 +12,9 @@ import { AppConfig, LayoutService } from './@core/services/app.layout.service';
     imports: [RouterOutlet]
 })
 export class AppComponent implements OnInit, AfterViewInit {
+    private primengConfig = inject(PrimeNGConfig);
+    private layoutService = inject(LayoutService);
 
-    constructor(private primengConfig: PrimeNGConfig, private layoutService: LayoutService) {
-
-
-     }
 
     ngOnInit() :void{
        this.primengConfig.ripple = true;

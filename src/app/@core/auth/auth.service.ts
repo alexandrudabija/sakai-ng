@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, effect, Injectable, signal, } from '@angular/core';
+import { computed, effect, Injectable, signal, inject } from '@angular/core';
 import { Observable, shareReplay, Subscription, timer } from 'rxjs';
 import { SignInRequestInterface } from '../types/auth.type';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -12,15 +12,19 @@ import { CurrentUserInterface } from '../types/user.type';
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private cacheService = inject(CacheService);
+  private jwtHelper = inject(JwtHelperService);
+  private webStorageService = inject(WebStorageService);
+  private router = inject(Router);
+
   currentUser = signal<CurrentUserInterface | null | undefined>(undefined);
   isLogged = computed(() => this.currentUser() !== undefined && this.currentUser() !== null);
   private autoLogoutSubscription: Subscription | null = null;
   private expirationSignal = signal<number | null>(null); // Signal care reține timpul de expirare
 
 
-  constructor(private http: HttpClient, private cacheService: CacheService, private jwtHelper: JwtHelperService,
-    private webStorageService: WebStorageService, private router: Router,
-  ) {
+  constructor() {
 
     this.currentUser.set(this.webStorageService.get('user') || undefined);
 

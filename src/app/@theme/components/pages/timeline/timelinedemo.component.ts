@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeIcons, SharedModule } from 'primeng/api';
 import { TimelineModule } from 'primeng/timeline';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 
@@ -9,7 +9,7 @@ import { ButtonModule } from 'primeng/button';
     templateUrl: './timelinedemo.component.html',
     styleUrls: ['./timelinedemo.scss'],
     standalone: true,
-    imports: [TimelineModule, SharedModule, NgClass, CardModule, NgIf, ButtonModule]
+    imports: [TimelineModule, SharedModule, NgClass, CardModule, ButtonModule]
 })
 export class TimelineDemoComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { LocalStorageService, SessionStorageService } from 'angular-web-storage';
 import { HashingService } from './hashing.service';
 import { environment } from '../../../environments/environment';
@@ -8,10 +8,10 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class WebStorageService {
+  private local = inject(LocalStorageService);
+  private session = inject(SessionStorageService);
+  private hashingService = inject(HashingService);
 
-  constructor(private local: LocalStorageService,
-    private session: SessionStorageService,
-    private hashingService: HashingService) { }
 
   set<T>(key: string, data: T, expired: number = 900) {
 

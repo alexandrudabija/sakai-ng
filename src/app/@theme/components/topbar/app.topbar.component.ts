@@ -1,4 +1,4 @@
-import { Component, computed,  ElementRef, OnInit,  ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AppConfig, LayoutService } from "../../../@core/services/app.layout.service";
 import { RouterLink } from '@angular/router';
@@ -17,6 +17,9 @@ import { SearchInputComponent } from '../search-input/search-input.component';
     imports: [RouterLink, NgClass, SlicePipe, MenuModule, ButtonModule, SearchInputComponent]
 })
 export class AppTopBarComponent implements OnInit {
+    layoutService = inject(LayoutService);
+    private auth = inject(AuthService);
+
 
     items: MenuItem[] | undefined;
 
@@ -27,8 +30,6 @@ export class AppTopBarComponent implements OnInit {
     @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
 
     @ViewChild('topbarmenu') menu!: ElementRef;
-
-    constructor(public layoutService: LayoutService, private auth: AuthService) { }
 
     ngOnInit(): void {
 

@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostBinding, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from '../../../../@core/services/app.menu.service';
 import { LayoutService } from '../../../../@core/services/app.layout.service';
-import { NgIf, NgClass, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 
 @Component({
@@ -13,30 +13,42 @@ import { RippleModule } from 'primeng/ripple';
     selector: '[app-menuitem]',
     template: `
 		<ng-container>
-            <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">{{item.label}}</div>
-			<a *ngIf="(!item.routerLink || item.items) && item.visible !== false" [attr.href]="item.url" (click)="itemClick($event)"
-			   [ngClass]="item.class" [attr.target]="item.target" tabindex="0" pRipple>
-				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-				<span class="layout-menuitem-text">{{item.label}}</span>
-				<i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-			</a>
-			<a *ngIf="(item.routerLink && !item.items) && item.visible !== false" (click)="itemClick($event)" [ngClass]="item.class" 
-			   [routerLink]="item.routerLink" routerLinkActive="active-route" [routerLinkActiveOptions]="item.routerLinkActiveOptions||{ paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' }"
-               [fragment]="item.fragment" [queryParamsHandling]="item.queryParamsHandling" [preserveFragment]="item.preserveFragment" 
-               [skipLocationChange]="item.skipLocationChange" [replaceUrl]="item.replaceUrl" [state]="item.state" [queryParams]="item.queryParams"
-               [attr.target]="item.target" tabindex="0" pRipple>
-				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-				<span class="layout-menuitem-text">{{item.label}}</span>
-				<i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-			</a>
-
-			<ul *ngIf="item.items && item.visible !== false" [@children]="submenuAnimation">
-				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-				</ng-template>
-			</ul>
+		  @if (root && item.visible !== false) {
+		    <div class="layout-menuitem-root-text">{{item.label}}</div>
+		  }
+		  @if ((!item.routerLink || item.items) && item.visible !== false) {
+		    <a [attr.href]="item.url" (click)="itemClick($event)"
+		      [ngClass]="item.class" [attr.target]="item.target" tabindex="0" pRipple>
+		      <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+		      <span class="layout-menuitem-text">{{item.label}}</span>
+		      @if (item.items) {
+		        <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
+		      }
+		    </a>
+		  }
+		  @if ((item.routerLink && !item.items) && item.visible !== false) {
+		    <a (click)="itemClick($event)" [ngClass]="item.class"
+		      [routerLink]="item.routerLink" routerLinkActive="active-route" [routerLinkActiveOptions]="item.routerLinkActiveOptions||{ paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' }"
+		      [fragment]="item.fragment" [queryParamsHandling]="item.queryParamsHandling" [preserveFragment]="item.preserveFragment"
+		      [skipLocationChange]="item.skipLocationChange" [replaceUrl]="item.replaceUrl" [state]="item.state" [queryParams]="item.queryParams"
+		      [attr.target]="item.target" tabindex="0" pRipple>
+		      <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+		      <span class="layout-menuitem-text">{{item.label}}</span>
+		      @if (item.items) {
+		        <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
+		      }
+		    </a>
+		  }
+		
+		  @if (item.items && item.visible !== false) {
+		    <ul [@children]="submenuAnimation">
+		      @for (child of item.items; track child; let i = $index) {
+		        <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+		      }
+		    </ul>
+		  }
 		</ng-container>
-    `,
+		`,
     animations: [
         trigger('children', [
             state('collapsed', style({
@@ -49,9 +61,14 @@ import { RippleModule } from 'primeng/ripple';
         ])
     ],
     standalone: true,
-    imports: [NgIf, RippleModule, NgClass, RouterLinkActive, RouterLink, NgFor]
+    imports: [RippleModule, NgClass, RouterLinkActive, RouterLink]
 })
 export class AppMenuitemComponent implements OnInit, OnDestroy {
+    layoutService = inject(LayoutService);
+    private cd = inject(ChangeDetectorRef);
+    router = inject(Router);
+    private menuService = inject(MenuService);
+
 
     @Input() item: any;
 
@@ -69,7 +86,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     key: string = "";
 
-    constructor(public layoutService: LayoutService, private cd: ChangeDetectorRef, public router: Router, private menuService: MenuService) {
+    constructor() {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(value => {
             Promise.resolve(null).then(() => {
                 if (value.routeEvent) {

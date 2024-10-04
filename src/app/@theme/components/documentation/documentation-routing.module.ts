@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DocumentationComponent } from './documentation.component';
+
 
 @NgModule({
     imports: [RouterModule.forChild([
-        { path: '', component: DocumentationComponent }
+        { path: '', loadComponent: () => import('./documentation.component').then(m => m.DocumentationComponent) }
     ])],
     exports: [RouterModule]
 })

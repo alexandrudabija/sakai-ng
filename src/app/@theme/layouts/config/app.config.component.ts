@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
-import { NgFor, NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -13,25 +13,21 @@ import { MenuService } from '../../../@core/services/app.menu.service';
     templateUrl: './app.config.component.html',
     standalone: true,
     imports: [
-        SidebarModule,
-        ButtonModule,
-        NgFor,
-        NgClass,
-        NgIf,
-        RadioButtonModule,
-        FormsModule,
-        InputSwitchModule,
-    ],
+    SidebarModule,
+    ButtonModule,
+    NgClass,
+    RadioButtonModule,
+    FormsModule,
+    InputSwitchModule
+],
 })
 export class AppConfigComponent {
+    layoutService = inject(LayoutService);
+    menuService = inject(MenuService);
+
     @Input() minimal: boolean = false;
 
     scales: number[] = [12, 13, 14, 15, 16];
-
-    constructor(
-        public layoutService: LayoutService,
-        public menuService: MenuService
-    ) { }
 
     get visible(): boolean {
         return this.layoutService.state.configSidebarVisible;

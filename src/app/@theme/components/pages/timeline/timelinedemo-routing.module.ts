@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TimelineDemoComponent } from './timelinedemo.component';
+
 
 @NgModule({
     imports: [RouterModule.forChild([
-        { path: '', component: TimelineDemoComponent }
+        { path: '', loadComponent: () => import('./timelinedemo.component').then(m => m.TimelineDemoComponent) }
     ])],
     exports: [RouterModule]
 })

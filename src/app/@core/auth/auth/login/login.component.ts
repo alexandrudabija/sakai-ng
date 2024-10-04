@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { LayoutService } from 'src/app/@core/services/app.layout.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -23,10 +23,11 @@ import { AuthService } from 'src/app/@core/auth/auth.service';
     imports: [InputTextModule, PasswordModule, FormsModule, ReactiveFormsModule, CheckboxModule, ButtonModule, RouterLink]
 })
 export class LoginComponent implements OnInit {
+    layoutService = inject(LayoutService);
+    private auth = inject(AuthService);
+    private formBuilder = inject(FormBuilder);
+
     signInForm!: FormGroup;
-
-
-    constructor(public layoutService: LayoutService, private auth: AuthService, private formBuilder: FormBuilder,) { }
     ngOnInit(): void {
 
         this.signInForm = this.formBuilder.group({

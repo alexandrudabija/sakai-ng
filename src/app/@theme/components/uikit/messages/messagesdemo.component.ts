@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Message, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
@@ -13,10 +13,10 @@ import { MessageModule } from 'primeng/message';
     imports: [ToastModule, ButtonModule, MessagesModule, InputTextModule, MessageModule]
 })
 export class MessagesDemoComponent {
+    private service = inject(MessageService);
+
 
     msgs: Message[] = [];
-
-    constructor(private service: MessageService) { }
 
     showInfoViaToast() {
         this.service.add({ key: 'tst', severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
