@@ -7,13 +7,7 @@ import { AppTopBarComponent } from '../@theme/components/topbar/app.topbar.compo
 import { NgClass } from '@angular/common';
 import { AppFooterComponent } from '../@theme/components/footer/app.footer.component';
 import { AppConfigComponent } from '../@theme/layouts/config/app.config.component';
-import { FormsModule } from '@angular/forms';
-import { BadgeModule } from 'primeng/badge';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputTextModule } from 'primeng/inputtext';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { RippleModule } from 'primeng/ripple';
-import { SidebarModule } from 'primeng/sidebar';
+
 import { AppMenuComponent } from '../@theme/components/sidebar/menu/app.menu.component';
 import { AppMenuitemComponent } from '../@theme/components/sidebar/menu/app.menuitem.component';
 
@@ -21,19 +15,9 @@ import { AppMenuitemComponent } from '../@theme/components/sidebar/menu/app.menu
     selector: 'app-layout',
     templateUrl: './app.layout.component.html',
     standalone: true,
-    imports: [NgClass, AppTopBarComponent,
-        AppSidebarComponent,
+    imports: [NgClass, 
         RouterOutlet,
-        AppFooterComponent,
         AppConfigComponent,
-        FormsModule,
-        InputTextModule,
-        SidebarModule,
-        BadgeModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        RippleModule,
-        RouterModule,
         AppMenuitemComponent,
         AppTopBarComponent,
         AppFooterComponent,

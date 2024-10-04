@@ -15,7 +15,7 @@ import { PhotoService } from 'src/app/@core/services/photo.service';
     templateUrl: './mediademo.component.html',
     standalone: true,
     imports: [CarouselModule, SharedModule, ButtonModule, ImageModule, GalleriaModule],
-    providers: [   PhotoService ]
+  
 })
 export class MediaDemoComponent implements OnInit {
 
