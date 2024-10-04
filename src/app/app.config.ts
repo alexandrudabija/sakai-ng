@@ -7,14 +7,15 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi
 import { provideServiceWorker } from '@angular/service-worker';
 import { AuthInterceptor } from './@core/auth/security/auth.interceptor';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { CustomerService } from './demo/service/customer.service';
-import { CountryService } from './demo/service/country.service';
-import { NodeService } from './demo/service/node.service';
-import { IconService } from './demo/service/icon.service';
-import { EventService } from './demo/service/event.service';
-import { ProductService } from './demo/service/product.service';
-import { PhotoService } from './demo/service/photo.service';
+
 import { JwtModule } from '@auth0/angular-jwt';
+import { EventService } from './@core/services/event.service';
+import { CountryService } from './@core/services/country.service';
+import { CustomerService } from './@core/services/customer.service';
+import { IconService } from './@core/services/icon.service';
+import { NodeService } from './@core/services/node.service';
+import { PhotoService } from './@core/services/photo.service';
+import { ProductService } from './@core/services/product.service';
 
 
 const scrollConfig: InMemoryScrollingOptions = {
