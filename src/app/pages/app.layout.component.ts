@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
-import { filter, Subscription, timer } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { LayoutService } from "../@core/services/app.layout.service";
 import { AppSidebarComponent } from "../@theme/components/sidebar/app.sidebar.component";
 import { AppTopBarComponent } from '../@theme/components/topbar/app.topbar.component';

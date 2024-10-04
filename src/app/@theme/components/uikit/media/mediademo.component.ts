@@ -9,10 +9,13 @@ import { Product } from 'src/app/@core/types/product';
 import { ProductService } from 'src/app/@core/services/product.service';
 import { PhotoService } from 'src/app/@core/services/photo.service';
 
+   
+  
 @Component({
     templateUrl: './mediademo.component.html',
     standalone: true,
-    imports: [CarouselModule, SharedModule, ButtonModule, ImageModule, GalleriaModule]
+    imports: [CarouselModule, SharedModule, ButtonModule, ImageModule, GalleriaModule],
+    providers: [   PhotoService ]
 })
 export class MediaDemoComponent implements OnInit {
 
