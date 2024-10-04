@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { RouterOutlet } from '@angular/router';
+import { timer } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -8,11 +9,28 @@ import { RouterOutlet } from '@angular/router';
     standalone: true,
     imports: [RouterOutlet]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit,AfterViewInit {
 
-    constructor(private primengConfig: PrimeNGConfig) { }
+    constructor(private primengConfig: PrimeNGConfig) {
+
+
+     }
 
     ngOnInit() :void{
         this.primengConfig.ripple = true;
+    }
+
+
+    ngAfterViewInit():void {
+        timer(500).subscribe(() => {
+            this.hideSpinner();
+        });
+    }
+
+    hideSpinner(): void  {
+        const spinner = document.getElementById('nb-global-spinner');
+        if (spinner) {
+            spinner.style.display = 'none'; // Ascunde spinner-ul
+        }
     }
 }

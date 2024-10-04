@@ -7,13 +7,14 @@ import { AuthService } from '../../../@core/auth/auth.service';
 import { SlicePipe } from '@angular/common';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
+import { SearchInputComponent } from '../search-input/search-input.component';
 
 
 @Component({
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html',
     standalone: true,
-    imports: [RouterLink, NgClass, SlicePipe, MenuModule, ButtonModule,]
+    imports: [RouterLink, NgClass, SlicePipe, MenuModule, ButtonModule, SearchInputComponent]
 })
 export class AppTopBarComponent implements OnInit {
 
@@ -31,7 +32,7 @@ export class AppTopBarComponent implements OnInit {
 
     ngOnInit(): void {
 
-        console.log(this.userCredentials());
+        // console.log(this.userCredentials());
         this.items = [
             {
                 label: 'Profile',

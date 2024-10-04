@@ -5,7 +5,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { provideServiceWorker } from '@angular/service-worker';
-import { AuthInterceptor } from './@core/auth/auth.interceptor';
+import { AuthInterceptor } from './@core/auth/security/auth.interceptor';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { CustomerService } from './demo/service/customer.service';
 import { CountryService } from './demo/service/country.service';
@@ -28,18 +28,18 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 
 export const appConfig: ApplicationConfig = {
 
-  providers: [ provideRouter(routes, inMemoryScrollingFeature),
- provideZoneChangeDetection({ eventCoalescing: true }),
- provideAnimationsAsync(), provideHttpClient(withFetch(), withInterceptorsFromDi()),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    importProvidersFrom(BrowserAnimationsModule, JwtModule.forRoot({
-      config: {
-        tokenGetter: ()=> '',
-        // allowedDomains: ["example.com"],
-        // disallowedRoutes: ["http://example.com/examplebadroute/"],
-      },
-    })),
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  providers: [provideRouter(routes, inMemoryScrollingFeature),
+  provideZoneChangeDetection({ eventCoalescing: true }),
+  provideAnimationsAsync(), provideHttpClient(withFetch(), withInterceptorsFromDi()),
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  importProvidersFrom(BrowserAnimationsModule, JwtModule.forRoot({
+    config: {
+      tokenGetter: () => '',
+      // allowedDomains: ["example.com"],
+      // disallowedRoutes: ["http://example.com/examplebadroute/"],
+    },
+  })),
+  { provide: LocationStrategy, useClass: PathLocationStrategy },
     CountryService, CustomerService, EventService, IconService, NodeService,
     PhotoService, ProductService, provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
