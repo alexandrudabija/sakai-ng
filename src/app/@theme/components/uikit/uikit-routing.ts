@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
+import { ButtonDemoComponent } from './button/buttondemo.component';
 
 export const routes: Routes = [
-    { path: 'button', data: { breadcrumb: 'Button' }, loadChildren: () => import('./button/buttondemo-routing').then(c => c.routes) },
+    { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemoComponent },
     { path: 'charts', data: { breadcrumb: 'Charts' }, loadChildren: () => import('./charts/chartsdemo.module').then(m => m.ChartsDemoModule) },
     { path: 'file', data: { breadcrumb: 'File' }, loadChildren: () => import('./file/filedemo.module').then(m => m.FileDemoModule) },
     { path: 'floatlabel', data: { breadcrumb: 'Float Label' }, loadChildren: () => import('./floatlabel/floatlabeldemo.module').then(m => m.FloatlabelDemoModule) },

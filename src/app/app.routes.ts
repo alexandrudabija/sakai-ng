@@ -20,5 +20,5 @@ export const routes: Routes = [
     { path: 'notfound', loadComponent: () => import('./@theme/components/notfound/notfound.component').then(m => m.NotfoundComponent) },
     { path: '**', redirectTo: '/notfound' },
 
-    // ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
-];
+   
+]
