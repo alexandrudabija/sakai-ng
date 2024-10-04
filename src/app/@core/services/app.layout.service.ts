@@ -55,6 +55,7 @@ export class LayoutService {
         effect(() => {
             const config = this.config();
             if (this.updateStyle(config)) {
+                
                 this.changeTheme();
             }
             this.changeScale(config.scale);
