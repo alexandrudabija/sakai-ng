@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { filter, Subscription, timer } from 'rxjs';
 import { LayoutService } from "../@core/services/app.layout.service";
@@ -41,7 +41,7 @@ import { AppMenuitemComponent } from '../@theme/components/sidebar/menu/app.menu
         AppSidebarComponent,
     ]
 })
-export class AppLayoutComponent implements AfterViewInit, OnDestroy {
+export class AppLayoutComponent implements OnInit, OnDestroy {
 
     overlayMenuOpenSubscription: Subscription;
 
@@ -54,6 +54,9 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
     @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
     constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+
+    }
+    ngOnInit(): void {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
@@ -142,18 +145,7 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
     }
 
 
-    ngAfterViewInit(): void {
-        timer(500).subscribe(() => {
-            this.hideSpinner();
-        });
-    }
-
-    hideSpinner(): void {
-        const spinner = document.getElementById('nb-global-spinner');
-        if (spinner) {
-            spinner.style.display = 'none'; // Ascunde spinner-ul
-        }
-    }
+ 
 
     ngOnDestroy() {
         if (this.overlayMenuOpenSubscription) {
