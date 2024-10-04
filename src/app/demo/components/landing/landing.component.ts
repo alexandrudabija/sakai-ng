@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { LayoutService } from 'src/app/@core/services/app.layout.service';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
@@ -14,5 +14,5 @@ import { DividerModule } from 'primeng/divider';
 export class LandingComponent {
 
     constructor(public layoutService: LayoutService, public router: Router) { }
-    
+
 }

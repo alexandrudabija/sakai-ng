@@ -3,8 +3,8 @@ import { NavigationEnd, Router, RouterLinkActive, RouterLink } from '@angular/ro
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService } from './app.menu.service';
-import { LayoutService } from './service/app.layout.service';
+import { MenuService } from '../../../../@core/services/app.menu.service';
+import { LayoutService } from '../../../../@core/services/app.layout.service';
 import { NgIf, NgClass, NgFor } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 
@@ -135,7 +135,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         return this.root ? 'expanded' : (this.active ? 'expanded' : 'collapsed');
     }
 
-    @HostBinding('class.active-menuitem') 
+    @HostBinding('class.active-menuitem')
     get activeClass() {
         return this.active && !this.root;
     }

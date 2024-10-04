@@ -1,21 +1,21 @@
 import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { LayoutService } from "./service/app.layout.service";
-import { AppSidebarComponent } from "./app.sidebar.component";
-import { AppTopBarComponent } from './app.topbar.component';
+import { LayoutService } from "../@core/services/app.layout.service";
+import { AppSidebarComponent } from "../@theme/components/sidebar/app.sidebar.component";
+import { AppTopBarComponent } from '../@theme/components/topbar/app.topbar.component';
 import { NgClass } from '@angular/common';
-import { AppFooterComponent } from './app.footer.component';
-import { AppConfigComponent } from './config/app.config.component';
+import { AppFooterComponent } from '../@theme/components/footer/app.footer.component';
+import { AppConfigComponent } from '../@theme/layouts/config/app.config.component';
 import { FormsModule } from '@angular/forms';
 import { BadgeModule } from 'primeng/badge';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputTextModule } from 'primeng/inputtext'; 
+import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RippleModule } from 'primeng/ripple';
 import { SidebarModule } from 'primeng/sidebar';
-import { AppMenuComponent } from './app.menu.component';
-import { AppMenuitemComponent } from './app.menuitem.component';
+import { AppMenuComponent } from '../@theme/components/sidebar/menu/app.menu.component';
+import { AppMenuitemComponent } from '../@theme/components/sidebar/menu/app.menuitem.component';
 
 @Component({
     selector: 'app-layout',

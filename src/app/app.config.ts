@@ -34,7 +34,7 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     importProvidersFrom(BrowserAnimationsModule, JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
+        tokenGetter: ()=> '',
         // allowedDomains: ["example.com"],
         // disallowedRoutes: ["http://example.com/examplebadroute/"],
       },
@@ -47,6 +47,3 @@ export const appConfig: ApplicationConfig = {
     }),
   ]
 };
-export function tokenGetter() {
-  return ''
-}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { LayoutService } from 'src/app/@core/services/app.layout.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -47,9 +47,9 @@ export class LoginComponent implements OnInit {
 
             {
                 next: (userCredentials) => {
-                  
+
                     this.auth.setCredentials(userCredentials)
-                  
+
 
                     // this.matSnackBar.open(`Wellcome ${userCredentials.firstName}  !`, '',
                     //     { verticalPosition: this.verticalPosition, duration: 3200 }

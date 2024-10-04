@@ -1,9 +1,9 @@
 import { Component, computed, effect, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { LayoutService } from "./service/app.layout.service";
+import { LayoutService } from "../../../@core/services/app.layout.service";
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
-import { AuthService } from '../@core/auth/auth.service';
+import { AuthService } from '../../../@core/auth/auth.service';
 import { SlicePipe } from '@angular/common';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
